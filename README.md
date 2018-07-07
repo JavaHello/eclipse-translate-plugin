@@ -15,7 +15,9 @@
 3. 删除 `eclipse/configuration/org.eclipse.update` 目录，启动 eclipse。
 
 4. 安装成功可看到 `翻译` 菜单。
-![翻译插件](https://www.luokai.ltd/temp/20180700001.PNG)
+
+    ![翻译插件](https://www.luokai.ltd/temp/20180700001.PNG)
 
 5. 选中字符按 `Ctrl + 6` 即可
-![使用](https://www.luokai.ltd/temp/20180700002.PNG)
+
+    ![使用](https://www.luokai.ltd/temp/20180700002.PNG)
