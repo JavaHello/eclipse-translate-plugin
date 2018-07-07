@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Translation
+Bundle-SymbolicName: translation;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui.console;bundle-version="3.7.1",
+ org.eclipse.ui
+Automatic-Module-Name: translation
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: lib/fastjson-1.2.47.jar,
+ .
