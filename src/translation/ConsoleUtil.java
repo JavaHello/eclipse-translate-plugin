@@ -18,16 +18,6 @@ public class ConsoleUtil {
 	}
 
 	public static ConsoleUtil getIns() {
-		if(consoleManager == null) {
-			consoleManager = ConsolePlugin.getDefault().getConsoleManager();
-			IConsole[] consoles = consoleManager.getConsoles();
-			if (consoles.length > 0) {
-				console = (MessageConsole) consoles[0];
-			} else {
-				console = new MessageConsole(CONSOLE_NAME, null);
-				consoleManager.addConsoles(new IConsole[] { console });
-			}
-		}
 		if (ct == null) {
 			ct = new ConsoleUtil();
 			return ct;
@@ -37,6 +27,18 @@ public class ConsoleUtil {
 	}
 
 	public void show(String message) {
+		if(consoleManager == null) {
+			consoleManager = ConsolePlugin.getDefault().getConsoleManager();
+		}
+		if(console == null) {
+			IConsole[] consoles = consoleManager.getConsoles();
+			if (consoles.length > 0) {
+				console = (MessageConsole) consoles[0];
+			} else {
+				console = new MessageConsole(CONSOLE_NAME, null);
+				consoleManager.addConsoles(new IConsole[] { console });
+			}
+		}
 		consoleManager.showConsoleView(console);
 		MessageConsoleStream newMessageStream = console.newMessageStream();
 		newMessageStream.print(message);
