@@ -13,7 +13,6 @@ public class ConsoleUtil {
 	private static ConsoleUtil ct;
 
 	private ConsoleUtil() {
-		
 
 	}
 
@@ -27,14 +26,17 @@ public class ConsoleUtil {
 	}
 
 	public void show(String message) {
-		if(consoleManager == null) {
+		if (consoleManager == null) {
 			consoleManager = ConsolePlugin.getDefault().getConsoleManager();
 		}
-		if(console == null) {
+		if (console == null) {
 			IConsole[] consoles = consoleManager.getConsoles();
 			if (consoles.length > 0) {
-				console = (MessageConsole) consoles[0];
-			} else {
+				if (console instanceof MessageConsole) {
+					console = (MessageConsole) consoles[0];
+				}
+			}
+			if (console == null) {
 				console = new MessageConsole(CONSOLE_NAME, null);
 				consoleManager.addConsoles(new IConsole[] { console });
 			}
