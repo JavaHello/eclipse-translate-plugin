@@ -8,7 +8,7 @@
 
 1. 下载插件或 `pull` 源码。
 
-    插件[下载地址](https://github.com/JavaHello/eclipse-translate-plugin/blob/master/plugins/translation_1.0.0.201807091410.jar)
+    插件[下载地址](https://github.com/JavaHello/eclipse-translate-plugin/blob/master/plugins/)
 
 2. 将插件复制到 `eclipse/plugins` 目录。
 
