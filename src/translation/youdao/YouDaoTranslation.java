@@ -1,11 +1,12 @@
 package translation.youdao;
 
-import translation.Translation;
+import translation.AbstractTranslation;
 
-public class YouDaoTranslation implements Translation {
+public class YouDaoTranslation extends AbstractTranslation {
+
 
 	@Override
-	public String fy(String str) {
-		return YouDaoUtil.get(str);
+	public String doFy(String q) {
+		return YouDaoUtil.getIns().get(q);
 	}
 }

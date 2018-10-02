@@ -28,7 +28,7 @@ public class SampleHandler extends AbstractHandler {
 			}
 			q = q.substring(i + 5);
 			q = q.substring(0, q.lastIndexOf(","));
-			ConsoleUtil.getIns().show(TranslationFactory.newIns(Translation.API.Y).fy(q) + "\n");
+			ConsoleUtil.getIns().show(TranslationFactory.newIns(Translation.API.B).fy(q) + "\n");
 		}
 		return null;
 	}

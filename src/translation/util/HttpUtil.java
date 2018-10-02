@@ -16,6 +16,8 @@ public class HttpUtil {
 		try {
 			URL url = new URL(strUrl + mapToReqStr(param));
 			URLConnection connection = url.openConnection();
+			connection.setConnectTimeout(3000);
+			connection.setReadTimeout(6000);
 			is = connection.getInputStream();
 			int len = -1;
 			byte[] red = new byte[1024];

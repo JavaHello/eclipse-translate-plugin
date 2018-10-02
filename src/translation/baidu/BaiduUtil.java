@@ -1,4 +1,4 @@
-package translation.youdao;
+package translation.baidu;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,23 +9,23 @@ import com.alibaba.fastjson.JSONObject;
 import translation.util.HttpUtil;
 import translation.util.MD5Util;
 
-public class YouDaoUtil {
+public class BaiduUtil {
 	
 	
-	private static YouDaoUtil youDaoUtil;
+	private static BaiduUtil youDaoUtil;
 	public final Map<String, String> reqData;
-	private YouDaoUtil() {
+	private BaiduUtil() {
 		reqData = new HashMap<>();
 		reqData.put("from", "英文");
 		reqData.put("to", "中文");
-		reqData.put("appKey", YouDaoConfig.APP_KEY);
+		reqData.put("appid", BaiduConfig.APP_KEY);
 	}
 	
-	public static YouDaoUtil getIns() {
+	public static BaiduUtil getIns() {
 		if(youDaoUtil == null) {
-			synchronized (YouDaoUtil.class) {
+			synchronized (BaiduUtil.class) {
 				if(youDaoUtil == null) {
-					youDaoUtil = new YouDaoUtil();
+					youDaoUtil = new BaiduUtil();
 				}
 			}
 		}
@@ -36,18 +36,22 @@ public class YouDaoUtil {
 	public  String get(String str) {
 		reqData.put("q", str);
 		sign();
-		StringBuilder result = new StringBuilder();
+		StringBuilder result = null;
 		try {
-			JSONObject parsedData = JSONObject.parseObject(HttpUtil.get(YouDaoConfig.REQ_URL, reqData));
+			JSONObject parsedData = JSONObject.parseObject(HttpUtil.get(BaiduConfig.REQ_URL, reqData));
+			System.out.print(parsedData);
+			if(!"52000".equals(parsedData.getString("error_code"))) {
+				return "访问百度翻译错误";
+			}
+			result = new StringBuilder();
 			result.setLength(0);
 			result.append("原    文:  ").append(str).append("\n");
 			result.append("翻译结果:  ");
-			if(str.trim().equals("") || parsedData.getJSONArray("translation") == null) {
+			if(str.trim().equals("") || parsedData.getJSONArray("trans_result") == null
+					|| parsedData.getJSONArray("trans_result").isEmpty()) {
 				return result.toString();
 			}
-			parsedData.getJSONArray("translation").forEach((a) -> {
-				result.append(a).append("\n");
-			});
+//			JSONArray dis = parsedData.getJSONArray("trans_result");
 			
 			JSONArray web = parsedData.getJSONArray("web");
 			if(web != null) {
@@ -69,8 +73,8 @@ public class YouDaoUtil {
 	private  void sign() {
 		String salt = String.valueOf(System.currentTimeMillis());
 		reqData.put("salt", salt);
-		String signStr = YouDaoConfig.APP_KEY + reqData.get("q") + salt + YouDaoConfig.APP_SECRET;
-		reqData.put("sign", MD5Util.sign(signStr).toUpperCase());
+		String signStr = BaiduConfig.APP_KEY + reqData.get("q") + salt + BaiduConfig.APP_SECRET;
+		reqData.put("sign", MD5Util.sign(signStr));
 	}
 
 	
