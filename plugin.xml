@@ -49,7 +49,7 @@
 	      point="org.eclipse.ui.actionSets">
 	   <actionSet
 	         label="Translation Action Set"
-	         visible="false"
+	         visible="true"
 	         id="translation.actionSet">
 	       <action
 			      label="翻译配置"
