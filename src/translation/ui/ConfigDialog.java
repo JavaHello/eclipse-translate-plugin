@@ -68,7 +68,7 @@ public class ConfigDialog extends JDialog {
 			});
 			
 			jTextArea.setEditable(false);
-			jTextArea.setBounds(31,90, 120, 28);
+			jTextArea.setBounds(31,90, 146, 28);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,8 +78,8 @@ public class ConfigDialog extends JDialog {
 
 	}
 	
-	public void errorClean() {
-		jTextArea.setText("");
+	public void initToolTipText() {
+		jTextArea.setText("配置完可能需要重启才生效");
 	}
 
 }

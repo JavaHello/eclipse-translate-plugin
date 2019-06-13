@@ -36,7 +36,7 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 		configDialog.setVisible(true);
 		configDialog.setLocationRelativeTo(null);
 		configDialog.requestFocus();
-		configDialog.errorClean();
+		configDialog.initToolTipText();
 
 	}
 
