@@ -1,6 +1,7 @@
 package translation.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.text.TextSelection;
@@ -18,8 +19,14 @@ import translation.TranslationFactory;
  */
 public class SampleHandler extends AbstractHandler {
 
+	
+	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		Command command = event.getCommand();
+		if("".equals(command.getId())) {
+			
+		}
 		ISelection selection = HandlerUtil.getActiveWorkbenchWindow(event).getSelectionService().getSelection();
 		if(selection instanceof TextSelection && !selection.isEmpty()) {
 			TextSelection textSelection = (TextSelection)selection;
