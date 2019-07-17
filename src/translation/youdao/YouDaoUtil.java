@@ -73,7 +73,13 @@ public class YouDaoUtil {
 			String errorCode = parsedData.getString("errorCode");
 			if(errorCode != null && !errorCode.isEmpty() && !"0".equals(errorCode)) {
 				result.setLength(0);
-				result.append("【有道翻译】" + ERROR_CODE.get(errorCode));
+				result.append("【有道翻译】")
+					.append(ERROR_CODE.get(errorCode))
+					.append("\n");
+				if("108".equals(errorCode) || "202".equals(errorCode)) {
+					result.append("AppKey:").append(YouDaoConfig.getAppKey()).append("\n");
+					result.append("AppSecret:").append(YouDaoConfig.getAppSecret()).append("\n");
+				}
 				return result.toString();
 			}
 			if(str.trim().equals("") || parsedData.getJSONArray("translation") == null) {
